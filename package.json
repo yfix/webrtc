@@ -1,0 +1,26 @@
+{
+  "name": "WebRTC",
+  "version": "1.0.0",
+  "description": "Cordova WebRTC Plugin",
+  "cordova": {
+    "id": "WebRTCPlugin",
+    "platforms": [
+      "ios",
+      "android",
+      "browser",
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yfix/yfrtc"
+  },
+  "keywords": [
+    "cordova",
+    "webrtc",
+    "webrtc-ios",
+    "webrtc-android",
+    "webrtc-browser",
+  ],
+  "author": "yf",
+  "license": "Apache 2.0"
+}

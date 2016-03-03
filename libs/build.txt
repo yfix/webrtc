@@ -1,0 +1,3 @@
+A set of build scripts useful for building WebRTC libraries for Android and iOS.
+
+https://github.com/pristineio/webrtc-build-scripts
