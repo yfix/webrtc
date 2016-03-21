@@ -5,16 +5,19 @@ import org.json.JSONObject;
 
 public class SessionConfig {
 	private boolean _isInitiator;
+	private String _stunServerHost;
+	private String _stunServerUsername;
+	private String _stunServerPassword;
 	private String _turnServerHost;
 	private String _turnServerUsername;
 	private String _turnServerPassword;
 	private boolean _audioStreamEnabled;
 	private boolean _videoStreamEnabled;
-	
+
 	public String getTurnServerHost() {
 		return _turnServerHost;
 	}
-	
+
 	public void setTurnServerHost(String _turnServerHost) {
 		this._turnServerHost = _turnServerHost;
 	}
@@ -35,6 +38,30 @@ public class SessionConfig {
 		this._turnServerPassword = _turnServerPassword;
 	}
 
+	public String getStunServerHost() {
+		return _stunServerHost;
+	}
+
+	public void setStunServerHost(String _stunServerHost) {
+		this._stunServerHost = _stunServerHost;
+	}
+
+	public String getStunServerUsername() {
+		return _stunServerUsername;
+	}
+
+	public void setStunServerUsername(String _stunServerUsername) {
+		this._stunServerUsername = _stunServerUsername;
+	}
+
+	public String getStunServerPassword() {
+		return _stunServerPassword;
+	}
+
+	public void setStunServerPassword(String _stunServerPassword) {
+		this._stunServerPassword = _stunServerPassword;
+	}
+
 	public boolean isInitiator() {
 		return _isInitiator;
 	}
@@ -42,7 +69,7 @@ public class SessionConfig {
 	public void setInitiator(boolean _isInitiator) {
 		this._isInitiator = _isInitiator;
 	}
-	
+
 	public boolean isAudioStreamEnabled() {
 		return _audioStreamEnabled;
 	}
@@ -62,7 +89,12 @@ public class SessionConfig {
 	public static SessionConfig fromJSON(JSONObject json) throws JSONException {
 		SessionConfig config = new SessionConfig();
 		config.setInitiator(json.getBoolean("isInitiator"));
-		
+
+		JSONObject stun = json.getJSONObject("stun");
+		config.setStunServerHost(stun.getString("host"));
+		config.setStunServerUsername(stun.getString("username"));
+		config.setStunServerPassword(stun.getString("password"));
+
 		JSONObject turn = json.getJSONObject("turn");
 		config.setTurnServerHost(turn.getString("host"));
 		config.setTurnServerUsername(turn.getString("username"));
@@ -71,7 +103,7 @@ public class SessionConfig {
 		JSONObject streams = json.getJSONObject("streams");
 		config.setAudioStreamEnabled(streams.getBoolean("audio"));
 		config.setVideoStreamEnabled(streams.getBoolean("video"));
-		
+
 		return config;
 	}
 }
